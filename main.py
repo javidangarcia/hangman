@@ -2,20 +2,10 @@ import pygame
 import os
 import math
 import random
-from words import words
+from constants import *
 
-# WINDOW PROPERTIES
-pygame.init()
-WIDTH, HEIGHT = 800, 500
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hangman")
-BUTTON_FONT = pygame.font.SysFont("comicsans", 35)
-WORD_FONT = pygame.font.SysFont("comicsans", 60)
-TITLE_FONT = pygame.font.SysFont("comicsans", 40)
-
-# COLORS
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
 
 # LOADING IMAGES
 images = []
@@ -37,14 +27,13 @@ for i in range(26):
     letters.append([x, y, chr(letter), True])
 
 # GAME VARIABLES
-FPS = 60
 hangman_status = 0
 word = random.choice(words)
 guessed = []
 
 # GAME FUNCTIONS
 def draw():
-    WINDOW.fill(WHITE)
+    WINDOW.fill(GREEN)
     title = TITLE_FONT.render("HANGMAN", 1, BLACK)
     WINDOW.blit(title, (WIDTH / 2 - title.get_width() / 2, 20))
 
@@ -71,7 +60,7 @@ def draw():
 
 def display_message(message):
     pygame.time.delay(1000)
-    WINDOW.fill(WHITE)
+    WINDOW.fill(GREEN)
     text = WORD_FONT.render(message, 1, BLACK)
     WINDOW.blit(text, (WIDTH / 2 - text.get_width() / 2, HEIGHT / 2 - text.get_height() / 2))
     pygame.display.update()
